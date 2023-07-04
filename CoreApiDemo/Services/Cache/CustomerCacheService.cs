@@ -45,7 +45,7 @@ public class CustomerCacheService : ICustomerCacheService
         var list = new List<CustomerOutput>();
         var tmpList = _cacheScore.Where(x => x.Value > 0).OrderByDescending(x => x.Value).ThenBy(x => x.Key).Select((item, i) => new { Id = item.Key, Score = item.Value, rank = i + 1 });
 
-        var rankList = tmpList.Where(x => x.Score >= start && x.Score <= end).ToList();
+        var rankList = tmpList.Where(x => x.rank >= start && x.rank <= end).ToList();
 
         for (int i = 0; i < rankList.Count; i++)
         {
